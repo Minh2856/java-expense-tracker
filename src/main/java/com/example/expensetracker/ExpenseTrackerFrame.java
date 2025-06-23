@@ -9,6 +9,7 @@ import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -24,6 +25,8 @@ public class ExpenseTrackerFrame extends JFrame {
 
         // --- UI Initialization ---
         setTitle("Java Expense Tracker");
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/app_icon.png")));
+        setIconImage(icon.getImage());
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the frame
@@ -40,6 +43,7 @@ public class ExpenseTrackerFrame extends JFrame {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+
             // Set column types for proper sorting
             @Override
             public Class<?> getColumnClass(int columnIndex) {
@@ -164,10 +168,8 @@ public class ExpenseTrackerFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Use FlatLaf for a modern look and feel
-        FlatLightLaf.setup();
 
-        // Run the GUI on the Event Dispatch Thread
+        FlatLightLaf.setup();
         SwingUtilities.invokeLater(() -> new ExpenseTrackerFrame().setVisible(true));
     }
 }
